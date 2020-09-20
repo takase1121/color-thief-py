@@ -11,6 +11,13 @@
 __version__ = '0.2.1'
 
 import math
+from itertools import zip_longest
+
+def grouper(iterable, n, fillvalue=None):
+    "Collect data into fixed-length chunks or blocks"
+    # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx"
+    args = [iter(iterable)] * n
+    return zip_longest(*args, fillvalue=fillvalue)
 
 
 class cached_property(object):
@@ -57,14 +64,7 @@ class ColorThief(object):
         :return list: a list of tuple in the form (r, g, b)
         """
         pixels = self.image.rgb
-        pixel_count = self.image.width * self.image.height
-        valid_pixels = []
-        for i in range(0, pixel_count, quality + 3):
-            r = pixels[i]
-            g = pixels[i + 1]
-            b = pixels[i + 2]
-            if not (r > 250 and g > 250 and b > 250):
-                valid_pixels.append((r, g, b))
+        valid_pixels = [*grouper(pixels, 3, 0)]
 
         # Send array to quantize function which clusters values
         # using median cut algorithm
