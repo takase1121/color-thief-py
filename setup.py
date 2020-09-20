@@ -7,9 +7,9 @@ A module for grabbing the color palette from an image.
 Links
 `````
 
-* `github <https://github.com/fengsp/color-thief-py>`_
+* `github <https://github.com/takase1121/color-thief-py>`_
 * `development version
-  <http://github.com/fengsp/color-thief-py/zipball/master#egg=color-thief-py-dev>`_
+  <http://github.com/takase1121/color-thief-py/zipball/master#egg=color-thief-py-dev>`_
 
 """
 from setuptools import setup
@@ -18,10 +18,10 @@ from setuptools import setup
 setup(
     name='colorthief',
     version='0.2.1',
-    url='https://github.com/fengsp/color-thief-py',
+    url='https://github.com/takase1121/color-thief-py',
     license='BSD',
-    author='Shipeng Feng',
-    author_email='fsp261@gmail.com',
+    author='Takase',
+    author_email='takase1121@gmail.com',
     description='A module for grabbing the color palette from an image.',
     long_description=__doc__,
     py_modules=['colorthief'],

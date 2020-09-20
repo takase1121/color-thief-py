@@ -2,26 +2,29 @@ Color Thief
 ===========
 
 A Python module for grabbing the color palette from an image.
+This is suited for ``python-mss`` ``Screenshot`` object
 
 Installation
 ------------
 
 ::
 
-    $ pip install colorthief
+    $ pip install pip install https://github.com/takase1121/color-thief-py/archive/master.zip
 
 Usage
 -----
 
 .. code:: python
-
+    import mss
     from colorthief import ColorThief
 
-    color_thief = ColorThief('/path/to/imagefile')
-    # get the dominant color
-    dominant_color = color_thief.get_color(quality=1)
-    # build a color palette
-    palette = color_thief.get_palette(color_count=6)
+    with mss.mss() as screen:
+        screenshot = mss.grab(mss.monitors[0])
+        color_thief = ColorThief(screenshot)
+        # get dominant color
+        dominant_color = color_thief.get_color(quality=1)
+        # build a color palette
+        palette = color_thief.get_palette(color_count=6)
 
 API
 ---
@@ -29,12 +32,10 @@ API
 .. code:: python
 
     class ColorThief(object):
-        def __init__(self, file):
+        def __init__(self, screenshot):
             """Create one color thief for one image.
 
-            :param file: A filename (string) or a file object. The file object
-                         must implement `read()`, `seek()`, and `tell()` methods,
-                         and be opened in binary mode.
+            :param screenshot: A screenshot object from python-mss
             """
             pass
 
@@ -65,8 +66,9 @@ Thanks
 ------
 
 Thanks to Lokesh Dhakar for his `original work
-<https://github.com/lokesh/color-thief/>`_.
-
+<https://github.com/lokesh/color-thief/>`_
+and `Shipeng Feng's fork
+<https://github.com/fengsp/color-thief-py/>`_
 Better
 ------
 

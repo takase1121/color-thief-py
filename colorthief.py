@@ -5,14 +5,12 @@
 
     Grabbing the color palette from an image.
 
-    :copyright: (c) 2015 by Shipeng Feng.
+    :copyright: (c) 2020 by Takase
     :license: BSD, see LICENSE for more details.
 """
 __version__ = '0.2.1'
 
 import math
-
-from PIL import Image
 
 
 class cached_property(object):
@@ -29,14 +27,12 @@ class cached_property(object):
 
 class ColorThief(object):
     """Color thief main class."""
-    def __init__(self, file):
+    def __init__(self, screenshot):
         """Create one color thief for one image.
 
-        :param file: A filename (string) or a file object. The file object
-                     must implement `read()`, `seek()`, and `tell()` methods,
-                     and be opened in binary mode.
+        :param screenshot: A screenshot object from python-mss
         """
-        self.image = Image.open(file)
+        self.image = screenshot
 
     def get_color(self, quality=10):
         """Get the dominant color.
@@ -60,17 +56,13 @@ class ColorThief(object):
                         greater the likelihood that colors will be missed.
         :return list: a list of tuple in the form (r, g, b)
         """
-        image = self.image.convert('RGBA')
-        width, height = image.size
-        pixels = image.getdata()
-        pixel_count = width * height
+        pixels = self.image.pixels
+        pixel_count = self.image.width * self.image.height
         valid_pixels = []
         for i in range(0, pixel_count, quality):
-            r, g, b, a = pixels[i]
-            # If pixel is mostly opaque and not white
-            if a >= 125:
-                if not (r > 250 and g > 250 and b > 250):
-                    valid_pixels.append((r, g, b))
+            r, g, b = pixels[i]
+            if not (r > 250 and g > 250 and b > 250):
+                valid_pixels.append((r, g, b))
 
         # Send array to quantize function which clusters values
         # using median cut algorithm
