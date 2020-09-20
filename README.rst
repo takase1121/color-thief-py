@@ -9,7 +9,7 @@ Installation
 
 ::
 
-    $ pip install pip install https://github.com/takase1121/color-thief-py/archive/master.zip
+    $ pip install git+https://github.com/takase1121/color-thief-py.git#egg=colorthief
 
 Usage
 -----
