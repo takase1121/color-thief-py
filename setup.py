@@ -17,7 +17,7 @@ from setuptools import setup
 
 setup(
     name='colorthief',
-    version='0.2.1',
+    version='0.2.2',
     url='https://github.com/takase1121/color-thief-py',
     license='BSD',
     author='Takase',
