@@ -56,11 +56,13 @@ class ColorThief(object):
                         greater the likelihood that colors will be missed.
         :return list: a list of tuple in the form (r, g, b)
         """
-        pixels = self.image.pixels
+        pixels = self.image.rgb
         pixel_count = self.image.width * self.image.height
         valid_pixels = []
-        for i in range(0, pixel_count, quality):
-            r, g, b = pixels[i]
+        for i in range(0, pixel_count, quality + 3):
+            r = pixels[i]
+            g = pixels[i + 1]
+            b = pixels[i + 2]
             if not (r > 250 and g > 250 and b > 250):
                 valid_pixels.append((r, g, b))
 
