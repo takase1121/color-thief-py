@@ -69,6 +69,7 @@ Thanks to Lokesh Dhakar for his `original work
 <https://github.com/lokesh/color-thief/>`_
 and `Shipeng Feng's fork
 <https://github.com/fengsp/color-thief-py/>`_
+
 Better
 ------
 
