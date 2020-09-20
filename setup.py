@@ -25,9 +25,6 @@ setup(
     description='A module for grabbing the color palette from an image.',
     long_description=__doc__,
     py_modules=['colorthief'],
-    install_requires=[
-        'Pillow'
-    ],
     zip_safe=False,
     classifiers=[
         'Development Status :: 4 - Beta',
